@@ -5,40 +5,69 @@
     max-width: 1400px;
     margin: 0px auto;
     padding: 24px 48px;
+    max-width: 100%;
     overflow-y: clip;
+
+    @media (max-width: 760px) {
+        padding: 16px 16px;
+    }
 }
 
 .holder {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    align-items: center;
+    align-items: flex-end;
+    overflow-x: clip;
+    width: 100%;
 
-    .wavy {
+    .socialBig {
         display: flex;
         flex-direction: row;
         align-items: flex-end;
         justify-content: end;
         gap: 2rem;
-        background-image: url('/wave.svg');
-        background-size: 600px 300px;
-        background-repeat: repeat-x;
         width: 50%;
-        height: clamp(6rem, 18vw, 21rem);
         max-width: 50vw;
-        animation: slide 10s infinite linear;
 
         .socialIcons {
             img {
-                filter: invert(1);
+                filter: saturate(0) brightness(100);
             }
+        }
+
+        @media (max-width: 760px) {
+            display: none;
+        }
+    }
+
+    .socialSmall {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: end;
+        gap: 1rem;
+        width: 50%;
+        height: 9rem;
+
+        .socialIcons {
+            img {
+                // filter: hue-rotate(90deg);
+                width: 24px;
+            }
+        }
+
+        @media (min-width: 761px) {
+            display: none;
         }
     }
 
     .title {
-        font-size: clamp(3.5rem, 6vw, 7rem);
-        line-height: clamp(3.5rem, 6vw, 7rem);
         width: 50%;
+
+        @media (max-width: 760px) {
+            max-width: 360px;
+        }
     }
 }
 
@@ -47,58 +76,142 @@
     flex-direction: row;
     gap: 2rem;
     width: 100%;
+    overflow-x: clip;
     margin-bottom: 128px;
 
     .bio {
         width: 50%;
         align-self: baseline;
         text-align: end;
-        font-size: 20px;
+        font-size: clamp(1rem, 1.6vw, 2rem);
         font-family: var(--space-font);
-        line-height: 36px;
+        line-height: clamp(1.2rem, 2vw, 2.2rem);
 
         p {
-            margin-bottom: 36px;
+            margin: 0px 0px 36px;
         }
 
         .bioItem {
+            position: relative;
             font-size: 36px;
             line-height: 60px;
             font-family: var(--zen-font);
+            transition: all 0.3s ease-out;
+            font-size: clamp(1.4rem, 3vw, 2.4rem);
+            line-height: clamp(2rem, 4vw, 3rem);
+
+            &.active {
+                transform: translate(-20px, 0px);
+                color: $light3
+            }
+
+            &.active::after {
+                position: absolute;
+                right: -50px;
+                content: '⦦';
+                transform: translate(-20px, 0px);
+                color: $light3
+            }
         }
     }
 
     .imageHolder {
+        display: grid;
         width: 50%;
-        height: 80vh;
-        max-height: 600px;
+        max-width: 100%;
 
-        .image {
-            max-width: 100px;
-            height: 100%;
-            background-image: url('/profile2.png');
-            background-color: white;
-            background-size: contain;
-            background-position: 50%;
-            background-size: cover;
+        .holderEffect {
+            display: grid;
+            grid-area: 1 / 1 / 1 / 1;
+            transform-style: preserve-3d;
+            transform-origin: 0% 0%;
+            transform: rotateY(90deg);
+            transition: none;
+
+            &.active {
+                transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
+                transform: rotateY(0deg);
+            }
+
+            .backgroundImage {
+                max-width: 100px;
+                perspective: 10;
+                grid-area: 1 / 1 / 1 / 1;
+                height: 100%;
+                background-color: $dark3;
+                background-size: cover;
+                background-position: 0px 0px;
+                transition: none;
+
+                &.imageOne {
+                    background-image: url('/back1.png');
+                }
+
+                &.imageTwo {
+                    background-image: url('/back2.png');
+                }
+
+                &.imageThree {
+                    background-image: url('/back2.png');
+                }
+
+                &.active {
+                    background-position: -50% 0px;
+                    transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
+                }
+            }
+
+            .foregroundImage {
+                pointer-events: none;
+                perspective: 50;
+                height: 100%;
+                animation: hero 1s 1 cubic-bezier(0.4, 1.6, 0.77, 0.8);
+                grid-area: 1 / 1 / 1 / 1;
+                align-self: end;
+                transform: translate3d(-50px, 0px, 0px);
+                transition: none;
+
+                &.active {
+                    transform: translate3d(-50px, 0px, 50px);
+                    transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
+                }
+            }
+        }
+    }
+
+    @media (max-width: 760px) {
+
+        .bio {
+            width: 70%;
+        }
+
+        .imageHolder {
+            width: 30%;
+
+            .holderEffect {
+
+                .foregroundImage {
+                    transform: translate3d(-50px, 0px, 0px);
+
+                    &.active {
+                        transform: translate3d(-100px, 0px, 50px);
+                    }
+                }
+            }
         }
     }
 }
 
 .sectionTitle {
     display: flex;
-    flex-direction: row;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
     width: 100%;
-    margin-bottom: 48px;
+    background: $dark1;
+    margin-bottom: 0px;
+    margin-bottom: 36px;
     position: sticky;
     top: 0;
-
-    div:first-child {
-        h2 {
-            line-height: 3.4rem;
-        }
-    }
 
     div:last-child {
         width: 100%;
@@ -119,6 +232,10 @@
     li {
         font-family: var(--space-font);
     }
+
+    @media (max-width: 760px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .sectionAwards {
@@ -126,14 +243,4 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 5vw;
     height: 100vh;
-}
-
-@keyframes slide {
-    0% {
-        background-position: 0px 0px;
-    }
-
-    100% {
-        background-position: 600px 0px;
-    }
 }

@@ -2,7 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.scss'
 
-import ProfileImage from '@/public/profile2.png'
+import awards from '@/public/awards.png'
+import projects from '@/public/projects.png'
+import skills from '@/public/skills.png'
+import { useEffect, useState } from 'react'
 
 
 interface Props {
@@ -11,6 +14,26 @@ interface Props {
 }
 
 export default function Home({ imagePath, colorsArray }: Props) {
+
+  const [selectedSection, setSelectedSection] = useState<number>(0);
+  const [timer, setTimer] = useState<NodeJS.Timer | undefined>();
+
+  useEffect(() => {
+    setTimer(setInterval(() => {
+      setSelectedSection((prev) => (prev + 1) % 3 + 1)
+    }, 2000))
+    return () => {
+      setTimer(undefined)
+      clearInterval(timer)
+    }
+  }, [])
+
+  const setSelection = (index: number) => {
+    setSelectedSection(index)
+    clearInterval(timer)
+    setTimer(undefined)
+  }
+
   return (
     <>
       <Head>
@@ -21,23 +44,39 @@ export default function Home({ imagePath, colorsArray }: Props) {
       </Head>
       <main className={styles.main}>
         <div className={styles.holder}>
-          <div className={styles.wavy}>
+          <div className={styles.socialBig}>
             <a className={styles.socialIcons}><Image src='/github.svg' alt='github' width={32} height={32} /></a>
             <a className={styles.socialIcons}><Image src='/linkedin.svg' alt='linkedin' width={32} height={32} /></a>
             <a className={styles.socialIcons}><Image src='/twitter.svg' alt='twitter' width={32} height={32} /></a>
           </div>
           <h1 className={styles.title}>Filipe Montanari Soccol</h1>
+          <div className={styles.socialSmall}>
+            <a className={styles.socialIcons}><Image src='/github.svg' alt='github' width={32} height={32} /></a>
+            <a className={styles.socialIcons}><Image src='/linkedin.svg' alt='linkedin' width={32} height={32} /></a>
+            <a className={styles.socialIcons}><Image src='/twitter.svg' alt='twitter' width={32} height={32} /></a>
+          </div>
         </div>
         <hr className="m1" />
         <div className={styles.holder2}>
           <div className={styles.bio}>
             <p>Senior Developer with extensive experience in web and game development, creative and excellent team player with a track record of success in high-impact projects and team leadership.</p>
-            <div className={styles.bioItem}>Skills</div>
-            <div className={styles.bioItem}>Projects</div>
-            <div className={styles.bioItem}>Awards</div>
+            <div className={`${styles.bioItem} ${selectedSection == 1 ? styles.active : ''}`} onMouseEnter={() => setSelection(1)}>Skills</div>
+            <div className={`${styles.bioItem} ${selectedSection == 2 ? styles.active : ''}`} onMouseEnter={() => setSelection(2)}>Projects</div>
+            <div className={`${styles.bioItem} ${selectedSection == 3 ? styles.active : ''}`} onMouseEnter={() => setSelection(3)}>Awards</div>
           </div>
-          <div className={styles.imageHolder}>
-            <div className={styles.image}></div>
+          <div className={`${styles.imageHolder}`}>
+            <div className={`${styles.holderEffect} ${selectedSection == 1 ? styles.active : ''}`}>
+              <div className={`${styles.backgroundImage} ${styles.imageThree}  ${selectedSection == 1 ? styles.active : ''}`}></div>
+              <Image className={`${styles.foregroundImage}  ${selectedSection == 1 ? styles.active : ''}`} src={skills} alt='Title' height={500}></Image>
+            </div>
+            <div className={`${styles.holderEffect} ${selectedSection == 2 ? styles.active : ''}`}>
+              <div className={`${styles.backgroundImage} ${styles.imageTwo} ${selectedSection == 2 ? styles.active : ''}`}></div>
+              <Image className={`${styles.foregroundImage}  ${selectedSection == 2 ? styles.active : ''}`} src={projects} alt='Title' height={500}></Image>
+            </div>
+            <div className={`${styles.holderEffect} ${selectedSection == 3 ? styles.active : ''}`}>
+              <div className={`${styles.backgroundImage} ${styles.imageOne}  ${selectedSection == 3 ? styles.active : ''}`}></div>
+              <Image className={`${styles.foregroundImage}  ${selectedSection == 3 ? styles.active : ''}`} src={awards} alt='Title' height={500}></Image>
+            </div>
           </div>
         </div>
         <div className={styles.sectionTitle}>
