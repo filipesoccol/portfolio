@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.scss'
 
-import awards from '@/public/awards.png'
-import projects from '@/public/projects.png'
-import skills from '@/public/skills.png'
+import awards from '@/public/header/awards.png'
+import projects from '@/public/header/projects.png'
+import skills from '@/public/header/skills.png'
 import { useEffect, useState } from 'react'
 
 
@@ -34,6 +34,12 @@ export default function Home({ imagePath, colorsArray }: Props) {
     setTimer(undefined)
   }
 
+  const goToSelection = (index: number) => {
+    const sections = ['skills', 'projects', 'awards']
+    const elem = document.getElementById(sections[index - 1])
+    console.log(elem?.scrollIntoView({ behavior: 'smooth' }))
+  }
+
   return (
     <>
       <Head>
@@ -60,9 +66,27 @@ export default function Home({ imagePath, colorsArray }: Props) {
         <div className={styles.holder2}>
           <div className={styles.bio}>
             <p>Senior Developer with extensive experience in web and game development, creative and excellent team player with a track record of success in high-impact projects and team leadership.</p>
-            <div className={`${styles.bioItem} ${selectedSection == 1 ? styles.active : ''}`} onMouseEnter={() => setSelection(1)}>Skills</div>
-            <div className={`${styles.bioItem} ${selectedSection == 2 ? styles.active : ''}`} onMouseEnter={() => setSelection(2)}>Projects</div>
-            <div className={`${styles.bioItem} ${selectedSection == 3 ? styles.active : ''}`} onMouseEnter={() => setSelection(3)}>Awards</div>
+            <button
+              className={`${styles.bioItem} ${selectedSection == 1 ? styles.active : ''}`}
+              onMouseEnter={() => setSelection(1)}
+              onClick={() => goToSelection(1)}
+            >
+              Skills
+            </button>
+            <button
+              className={`${styles.bioItem} ${selectedSection == 2 ? styles.active : ''}`}
+              onMouseEnter={() => setSelection(2)}
+              onClick={() => goToSelection(2)}
+            >
+              Projects
+            </button>
+            <button
+              className={`${styles.bioItem} ${selectedSection == 3 ? styles.active : ''}`}
+              onMouseEnter={() => setSelection(3)}
+              onClick={() => goToSelection(3)}
+            >
+              Awards
+            </button>
           </div>
           <div className={`${styles.imageHolder}`}>
             <div className={`${styles.holderEffect} ${selectedSection == 1 ? styles.active : ''}`}>
@@ -79,7 +103,7 @@ export default function Home({ imagePath, colorsArray }: Props) {
             </div>
           </div>
         </div>
-        <div className={styles.sectionTitle}>
+        <div id="skills" className={styles.sectionTitle}>
           <div><h2>Skills</h2></div>
           <div><hr /></div>
         </div>
@@ -135,12 +159,75 @@ export default function Home({ imagePath, colorsArray }: Props) {
             </ul>
           </div>
         </div>
-        <div className={styles.sectionTitle}>
+        <div id="projects" className={styles.sectionTitle}>
           <div><h2>Projects</h2></div>
           <div><hr /></div>
         </div>
         <div className={styles.sectionAwards}>
 
+        </div>
+        <div id="awards" className={styles.sectionTitle}>
+          <div><h2>Awards</h2></div>
+          <div><hr /></div>
+        </div>
+        <div className={styles.sectionAwards}>
+          <div className={styles.award}>
+            <h3>IPFS Microgrants</h3>
+            <p>Filecoin Grants Program</p>
+          </div>
+          <div className={styles.awardDescription}>
+            <div>NOVEMBER 2022</div>
+            <div>Earned a Micro Grant to develop Vue and React open source components to support IPFS fetch data from multiple gateways.</div>
+            <ul>
+              <li><a href="https://github.com/filipesoccol/ipfs-public-fetcher" target='_blank'>IPFS Fetcher Repo ⦦</a></li>
+              <li><a href="https://github.com/filipesoccol/vue-ipfs-components" target='_blank'>Vue IPFS Components Repo ⦦</a></li>
+              <li><a href="https://github.com/filipesoccol/react-ipfs-components" target='_blank'>React IPFS Components Repo ⦦</a></li>
+            </ul>
+          </div>
+          <div className={styles.award}>
+            <h3>Polygon and Filecoin Award</h3>
+            <p>Ethereum São Paulo 2022</p>
+          </div>
+          <div className={styles.awardDescription}>
+            <div>OCTOBER 2022</div>
+            <div>Earned a prize with the Doiim team project Web3RP. Get a real helper to streamline your business of any size or kind as fast as a couple of clicks.</div>
+            <ul>
+              <li><a href="https://github.com/doiim/web3RP" target='_blank'>Web3RP Repo ⦦</a></li>
+            </ul>
+          </div>
+          <div className={styles.award}>
+            <h3>Superfluid Award</h3>
+            <p>ETHGlobal 2021</p>
+          </div>
+          <div className={styles.awardDescription}>
+            <div>OCTOBER 2021</div>
+            <div>Earned a prize as a solo developer with project Fluid Miners. A Superfluid gamified coin offering, bonus distribution, using DAI as energy resource.</div>
+            <ul>
+              <li><a href="https://ethglobal.com/showcase/fluid-miners-0m6nt" target='_blank'>Fluid Miners Pitch ⦦</a></li>
+              <li><a href="https://github.com/doiim/fluid-miners" target='_blank'>Fluid Miners Repo ⦦</a></li>
+            </ul>
+          </div>
+          <div className={styles.award}>
+            <h3>Ripio Award</h3>
+            <p>ETH Buenos Aires 2018</p>
+          </div>
+          <div className={styles.awardDescription}>
+            <div>MAY 2018</div>
+            <div>Earned a prize with the Doiim team project BId, legally binding blockchain identity.</div>
+            <ul>
+              <li><a href="https://github.com/ETHBuenosAires-Doiim/bID" target='_blank'>bID Repo ⦦</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className={styles.footer}>
+          <hr />
+          <div className={styles.social}>
+            <a><Image src='/github.svg' alt='github' width={32} height={32} /></a>
+            <a><Image src='/linkedin.svg' alt='linkedin' width={32} height={32} /></a>
+            <a><Image src='/twitter.svg' alt='twitter' width={32} height={32} /></a>
+          </div>
+          <p>LONDRINA - PARANA - BRAZIL</p>
+          <p>filipe.soccol@gmail.com</p>
         </div>
       </main>
     </>
