@@ -51,9 +51,9 @@ export default function Home({ imagePath, colorsArray }: Props) {
       <main className={styles.main}>
         <div className={styles.holder}>
           <div className={styles.socialBig}>
-            <a className={styles.socialIcons}><Image src='/github.svg' alt='github' width={32} height={32} /></a>
-            <a className={styles.socialIcons}><Image src='/linkedin.svg' alt='linkedin' width={32} height={32} /></a>
-            <a className={styles.socialIcons}><Image src='/twitter.svg' alt='twitter' width={32} height={32} /></a>
+            <a className={styles.socialIcons}><Image src='/github.svg' alt='github' width={24} height={24} /></a>
+            <a className={styles.socialIcons}><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
+            <a className={styles.socialIcons}><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
           </div>
           <h1 className={styles.title}>Filipe Montanari Soccol</h1>
           <div className={styles.socialSmall}>
@@ -163,8 +163,36 @@ export default function Home({ imagePath, colorsArray }: Props) {
           <div><h2>Projects</h2></div>
           <div><hr /></div>
         </div>
-        <div className={styles.sectionAwards}>
-
+        <div className={styles.sectionProjects}>
+          <div className={styles.project}>
+            <div className={styles.projectImage}>
+              <Image src='/projects/otoco_48.png' alt='otoco.io' width={300} height={300} />
+            </div>
+            <div className={styles.projectDescription}>
+              <div><Image src='/projects/otoco_icon2.png' alt='otoco.io' width={64} height={64} /></div>
+              <p>otoco.io</p>
+              <p>We used to have handwritten airline tickets. Now our boarding passes are a QR code. Companies too are being digitized, and OtoCo is the first to do it, leapfrogging Web2 and using blockchains as the enabling tech.</p>
+            </div>
+            <div className={styles.projectImage}></div>
+          </div>
+          <div className={styles.project}>
+            <div className={styles.projectImage}></div>
+            <div className={`${styles.projectDescription} ${styles.inverse}`}>
+              <div><Image src='/projects/fruit_icon.png' alt='otoco.io' width={64} height={64} /></div>
+              <p>fruit.dance</p>
+              <p>Whether you're swiping on your mobile or arrow-smashing on your keyboard, it's time to mix and match those juicy fruits. Press them together and watch the magic happen as they transform into entirely new fruits!</p>
+            </div>
+            <div className={styles.projectImage}><Image src='/projects/fruit_48.png' alt='otoco.io' width={300} height={300} /></div>
+          </div>
+          <div className={styles.project}>
+            <div className={styles.projectImage}><Image src='/projects/ipfs_48.png' alt='otoco.io' width={300} height={300} /></div>
+            <div className={styles.projectDescription}>
+              <div><Image src='/projects/ipfs_icon.png' alt='otoco.io' width={64} height={64} /></div>
+              <p>IPFS React/Vue Components</p>
+              <p>Load any IPFS content from the fastest gateway available just passing a valid path. The plugin itself verify for you the fastest suitable gateways from the Public Gateways list provided by Protocol Labs.</p>
+            </div>
+            <div className={styles.projectImage}></div>
+          </div>
         </div>
         <div id="awards" className={styles.sectionTitle}>
           <div><h2>Awards</h2></div>
@@ -222,9 +250,9 @@ export default function Home({ imagePath, colorsArray }: Props) {
         <div className={styles.footer}>
           <hr />
           <div className={styles.social}>
-            <a><Image src='/github.svg' alt='github' width={32} height={32} /></a>
-            <a><Image src='/linkedin.svg' alt='linkedin' width={32} height={32} /></a>
-            <a><Image src='/twitter.svg' alt='twitter' width={32} height={32} /></a>
+            <a><Image src='/github.svg' alt='github' width={24} height={24} /></a>
+            <a><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
+            <a><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
           </div>
           <p>LONDRINA - PARANA - BRAZIL</p>
           <p>filipe.soccol@gmail.com</p>
@@ -240,7 +268,7 @@ export async function getServerSideProps() {
 
   const size = 200
   const squareSize = size / 8;
-  let svgString = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200">`;
+  let svgString = `< svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200">`;
 
   const colors = [
 
@@ -254,12 +282,12 @@ export async function getServerSideProps() {
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
       const rect = `<rect
-        x="${j * squareSize}" 
-        y="${i * squareSize}"
-        width="${squareSize}"
-        height="${squareSize}"
-        fill="${colors[parseInt((Math.random() * 5).toString())]}"
-        /> `;
+                x="${j * squareSize}"
+                y="${i * squareSize}"
+                width="${squareSize}"
+                height="${squareSize}"
+                fill="${colors[parseInt((Math.random() * 5).toString())]}"
+              /> `;
       svgString += rect;
     }
   }

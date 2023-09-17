@@ -9,6 +9,15 @@ html {
   padding: 0;
 }
 
+.canvasHolder {
+  position: fixed;
+  z-index: -1;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  mix-blend-mode: difference;
+}
+
 body {
   color: $light1;
   min-height: 100vh;
@@ -19,16 +28,19 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  mix-blend-mode: difference;
 }
 
 h1 {
   margin: 0px 0px;
   font-size: clamp(3rem, 6vw, 5rem);
   line-height: clamp(3rem, 6vw, 5rem);
+  max-width: 400px;
+  mix-blend-mode: difference;
 }
 
 h2 {
-  color: $light1;
+  mix-blend-mode: difference;
   font-size: clamp(1.5rem, 5vw, 2rem);
   line-height: clamp(1.5rem, 5vw, 2rem);
   margin: 0px 0px;
@@ -45,6 +57,7 @@ h3 {
 
 ul {
   padding-inline-start: 16px;
+  mix-blend-mode: difference;
 }
 
 li,
@@ -55,6 +68,7 @@ h4 {
 hr {
   height: 1px;
   background: linear-gradient(0.25turn, transparent, $light1, transparent);
+  mix-blend-mode: difference;
   border: 0px;
   margin: 0px;
 }
@@ -66,16 +80,7 @@ hr {
 }
 
 @media (prefers-color-scheme: light) {
-  body {
-    color: $dark1;
+  html {
     background: $light1;
-  }
-
-  h2 {
-    color: $dark1;
-  }
-
-  hr {
-    background: linear-gradient(0.25turn, transparent, $dark1, transparent);
   }
 }
