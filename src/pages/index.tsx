@@ -6,6 +6,8 @@ import awards from '@/public/header/awards.png'
 import projects from '@/public/header/projects.png'
 import skills from '@/public/header/skills.png'
 import { useEffect, useState } from 'react'
+import Highlighter from '@/components/highlighter'
+import ExternalLinkIcon from '@/components/externalLinkIcon'
 
 
 interface Props {
@@ -51,9 +53,9 @@ export default function Home({ imagePath, colorsArray }: Props) {
       <main className={styles.main}>
         <div className={styles.holder}>
           <div className={styles.socialBig}>
-            <a className={styles.socialIcons}><Image src='/github.svg' alt='github' width={24} height={24} /></a>
-            <a className={styles.socialIcons}><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
-            <a className={styles.socialIcons}><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
+            <a className={styles.socialIcons} href="https://github.com/filipesoccol" target='_blank'><Image src='/github.svg' alt='github' width={24} height={24} /></a>
+            <a className={styles.socialIcons} href="https://www.linkedin.com/in/filipesoccol/" target='_blank'><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
+            <a className={styles.socialIcons} href="https://twitter.com/filipesoccol" target='_blank'><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
           </div>
           <h1 className={styles.title}>Filipe Montanari Soccol</h1>
           <div className={styles.socialSmall}>
@@ -109,24 +111,23 @@ export default function Home({ imagePath, colorsArray }: Props) {
         </div>
         <div className={styles.sectionSkills}>
           <div>
-            <h3>Front-end</h3>
+            <Highlighter text='Front-end' />
             <ul>
               <li>Frameworks: React, Next, Vue, Vite, Gatsby</li>
-              <li>Styles: CSS, Bootstrap, Tailwind</li>
+              <li>Styles: CSS3, Bootstrap, Tailwind</li>
               <li>Test: Jest, Mocha, Chai</li>
-              <li>Providers: Web3, Ethers</li>
-              <li>Decentralized services integration</li>
             </ul>
           </div>
           <div>
-            <h3>Back-end</h3>
+            <Highlighter text='Back-end' />
             <ul>
-              <li>Node, Typescript</li>
-              <li>Smart-contract: Truffle, Hardhat, Solidity</li>
+              <li>Node, Bun, Express, Typescript</li>
+              <li>Databases: MongoDB, PostgreSQL, MySQL</li>
+              <li>Third party Services: Google, AWS</li>
             </ul>
           </div>
           <div>
-            <h3>Management</h3>
+            <Highlighter text='Team Management' />
             <ul>
               <li>Project Planning</li>
               <li>Team management: Asana, Jira, Git</li>
@@ -134,28 +135,18 @@ export default function Home({ imagePath, colorsArray }: Props) {
             </ul>
           </div>
           <div>
-            <h3>Front-end</h3>
+            <Highlighter text='Game and Visual Development' />
             <ul>
-              <li>Frameworks: React, Next, Vue, Vite, Gatsby</li>
-              <li>Styles: CSS, Bootstrap, Tailwind</li>
-              <li>Test: Jest, Mocha, Chai</li>
-              <li>Providers: Web3, Ethers</li>
-              <li>Decentralized services integration</li>
+              <li>Game Engines: Unity, Pico-8, Phaser, Godot</li>
+              <li>Visual Libraries: ThreeJS, Canvas, D3, CreateJS</li>
             </ul>
           </div>
           <div>
-            <h3>Back-end</h3>
+            <Highlighter text='Blockchain' />
             <ul>
-              <li>Node, Typescript</li>
-              <li>Smart-contract: Truffle, Hardhat, Solidity</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Management</h3>
-            <ul>
-              <li>Project Planning</li>
-              <li>Team management: Asana, Jira, Git</li>
-              <li>Quick learner of new development tools and methods</li>
+              <li>Providers: Web3, Ethers, Viem</li>
+              <li>Smart-Contract: Solidity, Hardhat</li>
+              <li>Third Party Integration: Connectors, IPFS, LibP2P, Alchemy, Infura</li>
             </ul>
           </div>
         </div>
@@ -169,27 +160,34 @@ export default function Home({ imagePath, colorsArray }: Props) {
               <Image src='/projects/otoco_48.png' alt='otoco.io' width={300} height={300} />
             </div>
             <div className={styles.projectDescription}>
-              <div><Image src='/projects/otoco_icon2.png' alt='otoco.io' width={64} height={64} /></div>
-              <p>otoco.io</p>
-              <p>We used to have handwritten airline tickets. Now our boarding passes are a QR code. Companies too are being digitized, and OtoCo is the first to do it, leapfrogging Web2 and using blockchains as the enabling tech.</p>
+              {/* <div><a href="https://otoco.io" target='_blank'><Image src='/projects/otoco_icon2.png' alt='otoco.io' width={64} height={64} /></a></div> */}
+              <p><a href="https://otoco.io" target='_blank'>otoco.io<ExternalLinkIcon /></a></p>
+              <p>As the lead developer of this dynamic project, I spearheaded the development of a versatile platform designed to streamline the creation of Limited Liability Companies (LLCs) in three key jurisdictions: Delaware, Wyoming, and Switzerland. My responsibilities spanned from conceiving the project's architecture to implementing every facet of its functionality, encompassing frontend and backend development, as well as the creation of intelligent smart contracts. One noteworthy achievement in this venture was the development of a meticulously designed Initial Coin Offering (ICO) smart contract that proved instrumental in securing a substantial 1.2 million USD in funding.</p>
+              <p>Tech Stack:</p>
+              <p>React・NextJS・Booststrap・Vercel・Ethers・Safe-SDK・Web3Onboard・Alchemy・IPFS・NodeJS・Express・Hardhat・Solidity</p>
             </div>
             <div className={styles.projectImage}></div>
           </div>
-          <div className={styles.project}>
-            <div className={styles.projectImage}></div>
-            <div className={`${styles.projectDescription} ${styles.inverse}`}>
-              <div><Image src='/projects/fruit_icon.png' alt='otoco.io' width={64} height={64} /></div>
-              <p>fruit.dance</p>
-              <p>Whether you're swiping on your mobile or arrow-smashing on your keyboard, it's time to mix and match those juicy fruits. Press them together and watch the magic happen as they transform into entirely new fruits!</p>
-            </div>
-            <div className={styles.projectImage}><Image src='/projects/fruit_48.png' alt='otoco.io' width={300} height={300} /></div>
-          </div>
-          <div className={styles.project}>
-            <div className={styles.projectImage}><Image src='/projects/ipfs_48.png' alt='otoco.io' width={300} height={300} /></div>
+          <div className={`${styles.project} ${styles.inverse}`}>
+            <div className={`${styles.projectImage} ${styles.inverse}`}><Image src='/projects/fruit_48.png' alt='fruit.dance logo' width={300} height={300} /></div>
             <div className={styles.projectDescription}>
-              <div><Image src='/projects/ipfs_icon.png' alt='otoco.io' width={64} height={64} /></div>
-              <p>IPFS React/Vue Components</p>
-              <p>Load any IPFS content from the fastest gateway available just passing a valid path. The plugin itself verify for you the fastest suitable gateways from the Public Gateways list provided by Protocol Labs.</p>
+              {/* <div><a href="https://fruit.dance" target='_blank'><Image src='/projects/fruit_icon.png' alt='fruit.dance screenshot' width={64} height={64} /></a></div> */}
+              <p><a href="https://fruit.dance" target='_blank'>fruit.dance<ExternalLinkIcon /></a></p>
+              <p>Solo project for showcase expertise. The game's animations and interactions rely solely on React and CSS, and it features a NextJS backend API for storing best scores. What makes it stand out is the innovative score verification system, calculated on the backend based on the game seed. This project showcases the potential of NextJS and Google Firestore to deliver a seamless gaming experience, combining frontend elegance with backend efficiency, while introducing a unique scoring mechanism for added depth and competitiveness.</p>
+              <p>Tech Stack:</p>
+              <p>React・NextJS・Google Firestore・Vercel</p>
+            </div>
+            <div className={styles.projectImage}></div>
+          </div>
+          <div className={styles.project}>
+            <div className={styles.projectImage}><Image src='/projects/ipfs_48.png' alt='ipfs components logo' width={300} height={300} /></div>
+            <div className={styles.projectDescription}>
+              {/* <div><a href="https://github.com/filipesoccol/react-ipfs-components" target='_blank'><Image src='/projects/ipfs_icon.png' alt='otoco.io' width={64} height={64} /></a></div> */}
+              <p><a href="https://filipesoccol.github.io/vue-ipfs-components-demo/" target='_blank'>IPFS Vue Components<ExternalLinkIcon /></a></p>
+              <p><a href="https://filipesoccol.github.io/react-ipfs-components-demo/" target='_blank'>IPFS React Components<ExternalLinkIcon /></a></p>
+              <p>In this solo project, the goal was to unify the IPFS ecosystem by automating gateway connections and content retrieval. Many existing projects depend on a single gateway, which can pose challenges during outages. With this library, users can effortlessly access IPFS content without the need to manually integrate APIs or select gateways, enhancing the reliability and convenience of the user experience.</p>
+              <p>Tech Stack:</p>
+              <p>Typescript・NPM・IPFS・Vue・React</p>
             </div>
             <div className={styles.projectImage}></div>
           </div>
@@ -200,64 +198,64 @@ export default function Home({ imagePath, colorsArray }: Props) {
         </div>
         <div className={styles.sectionAwards}>
           <div className={styles.award}>
-            <h3>IPFS Microgrants</h3>
+            <Highlighter text='IPFS Microgrants' />
             <p>Filecoin Grants Program</p>
           </div>
           <div className={styles.awardDescription}>
             <div>NOVEMBER 2022</div>
             <div>Earned a Micro Grant to develop Vue and React open source components to support IPFS fetch data from multiple gateways.</div>
             <ul>
-              <li><a href="https://github.com/filipesoccol/ipfs-public-fetcher" target='_blank'>IPFS Fetcher Repo ⦦</a></li>
-              <li><a href="https://github.com/filipesoccol/vue-ipfs-components" target='_blank'>Vue IPFS Components Repo ⦦</a></li>
-              <li><a href="https://github.com/filipesoccol/react-ipfs-components" target='_blank'>React IPFS Components Repo ⦦</a></li>
+              <li><a href="https://github.com/filipesoccol/ipfs-public-fetcher" target='_blank'>IPFS Fetcher Repo<ExternalLinkIcon /></a></li>
+              <li><a href="https://github.com/filipesoccol/vue-ipfs-components" target='_blank'>Vue IPFS Components Repo<ExternalLinkIcon /></a></li>
+              <li><a href="https://github.com/filipesoccol/react-ipfs-components" target='_blank'>React IPFS Components Repo<ExternalLinkIcon /></a></li>
             </ul>
           </div>
           <div className={styles.award}>
-            <h3>Polygon and Filecoin Award</h3>
+            <Highlighter text='Polygon and Filecoin Award' />
             <p>Ethereum São Paulo 2022</p>
           </div>
           <div className={styles.awardDescription}>
             <div>OCTOBER 2022</div>
             <div>Earned a prize with the Doiim team project Web3RP. Get a real helper to streamline your business of any size or kind as fast as a couple of clicks.</div>
             <ul>
-              <li><a href="https://github.com/doiim/web3RP" target='_blank'>Web3RP Repo ⦦</a></li>
+              <li><a href="https://github.com/doiim/web3RP" target='_blank'>Web3RP Repo<ExternalLinkIcon /></a></li>
             </ul>
           </div>
           <div className={styles.award}>
-            <h3>Superfluid Award</h3>
+            <Highlighter text='Superfluid Award' />
             <p>ETHGlobal 2021</p>
           </div>
           <div className={styles.awardDescription}>
             <div>OCTOBER 2021</div>
             <div>Earned a prize as a solo developer with project Fluid Miners. A Superfluid gamified coin offering, bonus distribution, using DAI as energy resource.</div>
             <ul>
-              <li><a href="https://ethglobal.com/showcase/fluid-miners-0m6nt" target='_blank'>Fluid Miners Pitch ⦦</a></li>
-              <li><a href="https://github.com/doiim/fluid-miners" target='_blank'>Fluid Miners Repo ⦦</a></li>
+              <li><a href="https://ethglobal.com/showcase/fluid-miners-0m6nt" target='_blank'>Fluid Miners Pitch<ExternalLinkIcon /></a></li>
+              <li><a href="https://github.com/doiim/fluid-miners" target='_blank'>Fluid Miners Repo<ExternalLinkIcon /></a></li>
             </ul>
           </div>
           <div className={styles.award}>
-            <h3>Ripio Award</h3>
+            <Highlighter text='Ripio Award' />
             <p>ETH Buenos Aires 2018</p>
           </div>
           <div className={styles.awardDescription}>
             <div>MAY 2018</div>
             <div>Earned a prize with the Doiim team project BId, legally binding blockchain identity.</div>
             <ul>
-              <li><a href="https://github.com/ETHBuenosAires-Doiim/bID" target='_blank'>bID Repo ⦦</a></li>
+              <li><a href="https://github.com/ETHBuenosAires-Doiim/bID" target='_blank'>bID Repo<ExternalLinkIcon /></a></li>
             </ul>
           </div>
         </div>
         <div className={styles.footer}>
           <hr />
           <div className={styles.social}>
-            <a><Image src='/github.svg' alt='github' width={24} height={24} /></a>
-            <a><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
-            <a><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
+            <a href="https://github.com/filipesoccol" target='_blank'><Image src='/github.svg' alt='github' width={24} height={24} /></a>
+            <a href="https://www.linkedin.com/in/filipesoccol" target='_blank'><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
+            <a href="https://twitter.com/filipesoccol" target='_blank'><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
           </div>
           <p>LONDRINA - PARANA - BRAZIL</p>
           <p>filipe.soccol@gmail.com</p>
         </div>
-      </main>
+      </main >
     </>
   )
 }
