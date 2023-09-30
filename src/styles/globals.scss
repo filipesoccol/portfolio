@@ -34,8 +34,8 @@ h1 {
   margin: 0px 0px;
   font-size: clamp(3rem, 6vw, 5rem);
   line-height: clamp(3rem, 6vw, 5rem);
-  max-width: 400px;
   mix-blend-mode: difference;
+  font-family: var(--futura-font);
 }
 
 h2 {
@@ -44,6 +44,7 @@ h2 {
   line-height: clamp(1.5rem, 5vw, 2rem);
   margin: 0px 0px;
   padding: 0px 0px;
+  font-family: var(--futura-font);
 }
 
 h3 {
@@ -51,17 +52,22 @@ h3 {
   width: fit-content;
   padding: 0px 8px;
   margin: 0.5rem 0;
+  font-weight: 400;
+  font-family: var(--futura-font);
 }
 
 ul {
   padding-inline-start: 16px;
   mix-blend-mode: difference;
+  list-style-type: square;
 }
 
 li,
 h4 {
   line-height: 1.5rem;
+  margin-left: 2px;
 }
+
 
 hr {
   height: 1px;

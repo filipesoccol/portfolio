@@ -33,7 +33,7 @@
         .socialIcons {
             img {
                 cursor: pointer;
-                filter: saturate(0) brightness(100);
+                filter: saturate(0) brightness(2);
             }
 
             img:hover {
@@ -41,7 +41,7 @@
             }
         }
 
-        @media (max-width: 760px) {
+        @media (max-width: 648px) {
             display: none;
         }
     }
@@ -62,15 +62,22 @@
             }
         }
 
-        @media (min-width: 761px) {
+        @media (min-width: 649px) {
             display: none;
+        }
+
+        @media (max-width: 480px) {
+            position: absolute;
+            right: 16px;
         }
     }
 
     .title {
+        display: flex;
+        flex-direction: column;
         width: 50%;
 
-        @media (max-width: 760px) {
+        @media (max-width: 648px) {
             width: 70%;
         }
     }
@@ -133,6 +140,7 @@
     .imageHolder {
         display: grid;
         width: 50%;
+        overflow-x: clip;
         max-width: 100%;
 
         .holderEffect {
@@ -195,7 +203,7 @@
         }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 648px) {
 
         .bio {
             width: 70%;
@@ -284,22 +292,60 @@
                 }
             }
 
-            .projectImage {
+            .spacer {
                 width: 25%;
             }
         }
 
+
+        &.inverse {
+            .projectImage {
+                img {
+                    transform: translate3d(0px, 0px, -40px) rotateY(-10deg);
+                }
+
+                // &::before {
+                //     left: 0px;
+                // }
+            }
+        }
+
         .projectImage {
+            position: relative;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            padding: 2px;
+            perspective: 300px;
+
 
             img {
                 width: 100%;
+                height: 100%;
+                max-width: 300px;
+                max-height: 300px;
                 position: relative;
                 object-fit: cover;
-                border: 2px solid;
-                background-attachment: fixed;
-                background-size: 100vw 100vh;
-                background-image: linear-gradient(to bottom, transparent, $light3 50%, transparent);
+                mix-blend-mode: hard-light;
+                background: $light3;
+                transform: translate3d(10px, 0px, -40px) rotateY(10deg);
+                -ms-transform: translate3d(10px, 0px, -40px) rotateY(10deg);
+                -webkit-transform: translate3d(10px, 0px, -40px) rotateY(10deg);
+                border: $light3 2px solid;
+
+
             }
+
+            &::before {
+                position: absolute;
+                content: '';
+                top: 0px;
+                left: calc(50% - 1rem);
+                width: 4rem;
+                height: 4rem;
+                background: $light3;
+            }
+
         }
 
         .projectDescription {
@@ -339,7 +385,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: end;
+        align-items: flex-end;
         text-align: end;
 
         h3 {
@@ -389,7 +435,7 @@
         img {
             mix-blend-mode: normal;
             cursor: pointer;
-            filter: saturate(0) brightness(100);
+            filter: saturate(0) brightness(2);
         }
 
         img:hover {

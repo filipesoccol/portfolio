@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const CreateStarfield = () => {
     return new Array(1000).fill(1).map((val, idx) => {
-      return <Star position={[
+      return <Star key={idx} position={[
         Math.random() * 1000 - 500,
         Math.random() * 1000 - 500,
         -idx,
@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="canvasHolder">
         <Canvas>
           <CreateStarfield />
-          <Meteorite position={[0, 0, -100]} />
+          <Meteorite position={[200, 0, -100]} />
         </Canvas>
       </div>
       <Component {...pageProps} />

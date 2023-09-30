@@ -17,12 +17,12 @@ interface Props {
 
 export default function Home({ imagePath, colorsArray }: Props) {
 
-  const [selectedSection, setSelectedSection] = useState<number>(0);
+  const [selectedSection, setSelectedSection] = useState<number>(1);
   const [timer, setTimer] = useState<NodeJS.Timer | undefined>();
 
   useEffect(() => {
     setTimer(setInterval(() => {
-      setSelectedSection((prev) => (prev + 1) % 3 + 1)
+      setSelectedSection((prev) => ((prev + 1) % 3) + 1)
     }, 2000))
     return () => {
       setTimer(undefined)
@@ -57,7 +57,7 @@ export default function Home({ imagePath, colorsArray }: Props) {
             <a className={styles.socialIcons} href="https://www.linkedin.com/in/filipesoccol/" target='_blank'><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
             <a className={styles.socialIcons} href="https://twitter.com/filipesoccol" target='_blank'><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
           </div>
-          <h1 className={styles.title}>Filipe Montanari Soccol</h1>
+          <h1 className={styles.title}><span>Filipe</span><span>Montanari</span><span>Soccol</span></h1>
           <div className={styles.socialSmall}>
             <a className={styles.socialIcons}><Image src='/github.svg' alt='github' width={32} height={32} /></a>
             <a className={styles.socialIcons}><Image src='/linkedin.svg' alt='linkedin' width={32} height={32} /></a>
@@ -156,7 +156,7 @@ export default function Home({ imagePath, colorsArray }: Props) {
         </div>
         <div className={styles.sectionProjects}>
           <div className={styles.project}>
-            <div className={styles.projectImage}>
+            <div className={`${styles.projectImage} ${styles.spacer}`}>
               <Image src='/projects/otoco_48.png' alt='otoco.io' width={300} height={300} />
             </div>
             <div className={styles.projectDescription}>
@@ -166,10 +166,10 @@ export default function Home({ imagePath, colorsArray }: Props) {
               <p>Tech Stack:</p>
               <p>React・NextJS・Booststrap・Vercel・Ethers・Safe-SDK・Web3Onboard・Alchemy・IPFS・NodeJS・Express・Hardhat・Solidity</p>
             </div>
-            <div className={styles.projectImage}></div>
+            <div className={styles.spacer}></div>
           </div>
           <div className={`${styles.project} ${styles.inverse}`}>
-            <div className={`${styles.projectImage} ${styles.inverse}`}><Image src='/projects/fruit_48.png' alt='fruit.dance logo' width={300} height={300} /></div>
+            <div className={`${styles.projectImage} ${styles.spacer} ${styles.inverse}`}><Image src='/projects/fruit_48.png' alt='fruit.dance logo' width={300} height={300} /></div>
             <div className={styles.projectDescription}>
               {/* <div><a href="https://fruit.dance" target='_blank'><Image src='/projects/fruit_icon.png' alt='fruit.dance screenshot' width={64} height={64} /></a></div> */}
               <p><a href="https://fruit.dance" target='_blank'>fruit.dance<ExternalLinkIcon /></a></p>
@@ -177,10 +177,10 @@ export default function Home({ imagePath, colorsArray }: Props) {
               <p>Tech Stack:</p>
               <p>React・NextJS・Google Firestore・Vercel</p>
             </div>
-            <div className={styles.projectImage}></div>
+            <div className={styles.spacer}></div>
           </div>
           <div className={styles.project}>
-            <div className={styles.projectImage}><Image src='/projects/ipfs_48.png' alt='ipfs components logo' width={300} height={300} /></div>
+            <div className={`${styles.projectImage} ${styles.spacer}`}><Image src='/projects/ipfs_48.png' alt='ipfs components logo' width={300} height={300} /></div>
             <div className={styles.projectDescription}>
               {/* <div><a href="https://github.com/filipesoccol/react-ipfs-components" target='_blank'><Image src='/projects/ipfs_icon.png' alt='otoco.io' width={64} height={64} /></a></div> */}
               <p><a href="https://filipesoccol.github.io/vue-ipfs-components-demo/" target='_blank'>IPFS Vue Components<ExternalLinkIcon /></a></p>
@@ -189,7 +189,7 @@ export default function Home({ imagePath, colorsArray }: Props) {
               <p>Tech Stack:</p>
               <p>Typescript・NPM・IPFS・Vue・React</p>
             </div>
-            <div className={styles.projectImage}></div>
+            <div className={styles.spacer}></div>
           </div>
         </div>
         <div id="awards" className={styles.sectionTitle}>
