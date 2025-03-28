@@ -1,38 +1,41 @@
 import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, PostData } from '@/lib/posts';
 import type { GetStaticProps } from 'next';
 
-interface Post {
-    slug: string;
-    title: string;
-}
+import styles from '@/styles/Blog.module.scss'
+import mainStyles from '@/styles/Home.module.scss'
+import Highlighter from '@/components/highlighter';
+import PostCard from '@/components/postCard';
 
 interface BlogProps {
-    allPosts: Post[];
+    allPosts: PostData[];
 }
 
 export default function Blog({ allPosts }: BlogProps) {
     return (
-        <div>
-            <h1>Blog</h1>
-            <ul>
-                {allPosts.map((post: Post) => (
-                    <li key={post.slug}>
-                        <Link href={`/blog/${post.slug}`}>
-                            {post.title}
+        <div className={mainStyles.main}>
+            <Link href="/"> ⦦ Back </Link>
+            <div className={styles.article}>
+                <h1>Blog</h1>
+                <div className={styles.tags}>
+                    {Array.from(new Set(allPosts.flatMap(post => post.tags || []))).map(tag => (
+                        <Link key={tag} href={`/blog/tags/${tag}`}>
+                            <Highlighter text={tag} />
                         </Link>
-                    </li>
-                ))}
-            </ul>
+                    ))}
+                </div>
+                <div className={styles.postList}>
+                    {allPosts.map((post: PostData) => (
+                        <PostCard key={post.slug} post={post} showTags={false} />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
-    const allPosts = getAllPosts().map((post: { slug: string }) => ({
-        slug: post.slug,
-        title: post.slug, // replace with actual title if available
-    }));
+    const allPosts = getAllPosts() as PostData[];
     return {
         props: {
             allPosts,

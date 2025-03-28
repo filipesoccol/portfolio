@@ -3,9 +3,11 @@ import styles from './highlighter.module.scss'
 
 interface Props {
     text: string
+    type?: 'link' | 'text'
+    className?: string
 }
 
-const Highlighter = ({ text }: Props) => {
+const Highlighter = ({ text, type, className }: Props) => {
 
     const [intersecting, setIntersecting] = useState<boolean>(false)
     const ref: LegacyRef<HTMLHeadingElement> = useRef(null)
@@ -26,9 +28,9 @@ const Highlighter = ({ text }: Props) => {
     }
 
     return (
-        <h3 ref={ref} className={intersecting ? styles.mark : ''}>
+        <div ref={ref} className={`${intersecting ? styles.mark : ''} ${className || ''}`}>
             {text}
-        </h3>
+        </div>
     )
 }
 

@@ -1,0 +1,132 @@
+@use '@/styles/colors.scss';
+
+.article {
+    font-family: var(--roboto-font);
+    font-weight: 200;
+    line-height: 1.6;
+    max-width: 600px;
+    /* Improve readability */
+    margin: 20px auto;
+    /* Add spacing */
+    padding: 10px;
+    /* Add padding for better content feel */
+
+    h2,
+    h3 {
+        color: var(--text);
+        padding: 0px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        text-align: center;
+        border: 2px solid var(--text);
+        border-radius: 8px;
+        // padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    pre {
+        display: block;
+        width: 100%;
+        background-color: #F5F5F5;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        font-family: var(--monospace-font);
+    }
+
+    :global(.float-left) {
+        float: left;
+        margin: 0 1em 1em 0;
+    }
+
+    :global(.float-right) {
+        float: right;
+        margin: 0 0 1em 1em;
+    }
+}
+
+.postCard {
+    margin: 2rem 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    width: 100%;
+
+    &:hover {
+        transform: translateY(-2px);
+
+        h3 {
+            color: colors.$light3;
+        }
+    }
+
+    &:nth-child(even) {
+        img {
+            order: 1;
+        }
+
+        h3,
+        div {
+            text-align: right;
+        }
+
+    }
+
+}
+
+.postImage {
+    flex: 0 0 200px;
+
+    img {
+        border-radius: 8px;
+        object-fit: cover;
+    }
+}
+
+.imageright {
+    flex-direction: row;
+}
+
+.imageleft {
+    flex-direction: row-reverse;
+}
+
+.postTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--text);
+    }
+}
+
+.date {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.tags {
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tag {
+    font-size: 0.8em;
+    color: #000;
+    background-color: #FE970F;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+}

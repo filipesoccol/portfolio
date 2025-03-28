@@ -8,16 +8,21 @@ import skills from '@/public/header/skills.png'
 import { useEffect, useState } from 'react'
 import Highlighter from '@/components/highlighter'
 import ExternalLinkIcon from '@/components/externalLinkIcon'
+import Link from 'next/link'
+import Icons from '@/components/icons'
+import { useRouter } from 'next/router'
 
 export default function Home() {
 
+  const router = useRouter()
   const [selectedSection, setSelectedSection] = useState<number>(1);
   const [timer, setTimer] = useState<NodeJS.Timer | undefined>();
 
   useEffect(() => {
-    setTimer(setInterval(() => {
+    const timer = setInterval(() => {
       setSelectedSection((prev) => ((prev + 1) % 3) + 1)
-    }, 2000))
+    }, 2000)
+    setTimer(timer)
     return () => {
       setTimer(undefined)
       clearInterval(timer)
@@ -26,8 +31,7 @@ export default function Home() {
 
   const setSelection = (index: number) => {
     setSelectedSection(index)
-    clearInterval(timer)
-    setTimer(undefined)
+    setTimer(timer)
   }
 
   const goToSelection = (index: number) => {
@@ -62,15 +66,15 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.holder}>
           <div className={styles.socialBig}>
-            <a className={styles.socialIcons} href="https://github.com/filipesoccol" target='_blank'><Image src='/github.svg' alt='github' width={24} height={24} /></a>
-            <a className={styles.socialIcons} href="https://www.linkedin.com/in/filipesoccol/" target='_blank'><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
-            <a className={styles.socialIcons} href="https://twitter.com/filipesoccol" target='_blank'><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
+            <a className={styles.socialIcons} href="https://github.com/filipesoccol" target='_blank'><Icons name='github' size={24} /></a>
+            <a className={styles.socialIcons} href="https://linkedin.com/in/filipesoccol/" target='_blank'><Icons name='linkedin' size={24} /></a>
+            <a className={styles.socialIcons} href="https://x.com/filipesoccol" target='_blank'><Icons name='twitter' size={24} /></a>
           </div>
           <h1 className={styles.title}><span>Filipe</span><span>Montanari</span><span>Soccol</span></h1>
           <div className={styles.socialSmall}>
-            <a className={styles.socialIcons} href="https://github.com/filipesoccol" target="_blank"><Image src='/github.svg' alt='github' width={32} height={32} /></a>
-            <a className={styles.socialIcons} href="https://www.linkedin.com/in/filipesoccol" target="_blank"><Image src='/linkedin.svg' alt='linkedin' width={32} height={32} /></a>
-            <a className={styles.socialIcons} href="https://twitter.com/filipesoccol" target="_blank"><Image src='/twitter.svg' alt='twitter' width={32} height={32} /></a>
+            <a className={styles.socialIcons} href="https://github.com/filipesoccol" target="_blank"><Icons name='github' size={24} /></a>
+            <a className={styles.socialIcons} href="https://linkedin.com/in/filipesoccol" target="_blank"><Icons name='linkedin' size={24} /></a>
+            <a className={styles.socialIcons} href="https://x.com/filipesoccol" target="_blank"><Icons name='twitter' size={24} /></a>
           </div>
         </div>
         <hr className="m1" />
@@ -97,6 +101,13 @@ export default function Home() {
               onClick={() => goToSelection(3)}
             >
               Awards
+            </button>
+            <button
+              onMouseEnter={() => setSelection(4)}
+              className={`${styles.bioItem} ${selectedSection == 4 ? styles.active : ''}`}
+              onClick={() => router.push('/blog')}
+            >
+              Blog
             </button>
           </div>
           <div className={`${styles.imageHolder}`}>
@@ -257,9 +268,9 @@ export default function Home() {
         <div className={styles.footer}>
           <hr />
           <div className={styles.social}>
-            <a href="https://github.com/filipesoccol" target='_blank'><Image src='/github.svg' alt='github' width={24} height={24} /></a>
-            <a href="https://www.linkedin.com/in/filipesoccol" target='_blank'><Image src='/linkedin.svg' alt='linkedin' width={24} height={24} /></a>
-            <a href="https://twitter.com/filipesoccol" target='_blank'><Image src='/twitter.svg' alt='twitter' width={24} height={24} /></a>
+            <a href="https://github.com/filipesoccol" target='_blank'><Icons name="github" size={24} /></a>
+            <a href="https://www.linkedin.com/in/filipesoccol" target='_blank'><Icons name="linkedin" size={24} /></a>
+            <a href="https://twitter.com/filipesoccol" target='_blank'><Icons name="twitter" size={24} /></a>
           </div>
           <p>LONDRINA - PARANA - BRAZIL</p>
           <p>filipe.soccol@gmail.com</p>
