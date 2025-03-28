@@ -38,14 +38,64 @@
         font-family: var(--monospace-font);
     }
 
+    figure {
+        margin: 1rem 0;
+        max-width: 100%;
+        display: block; // Changed to block to ensure proper floating
+        
+        &.float-right {
+            float: right;
+            margin: 0 0 1rem 1rem;
+            max-width: 40%;
+            clear: right; // Clear right floats for proper text wrapping
+        }
+        
+        &.float-left {
+            float: left;
+            margin: 0 1rem 1rem 0;
+            max-width: 40%;
+            clear: left; // Clear left floats for proper text wrapping
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block; // Ensures image is properly contained
+        }
+    }
+
+    // Adding specific styling for image-caption class to ensure it's applied everywhere
+    :global(.image-caption) {
+        text-align: center;
+        font-style: italic;
+        font-size: 14px !important;
+        color: var(--text);
+        padding: 0.5rem 0;
+        width: 100%;
+        display: block;
+        opacity: 0.6;
+    }
+
+    // Global float classes (these apply directly to images without figures)
     :global(.float-left) {
-        float: left;
-        margin: 0 1em 1em 0;
+        float: left !important;
+        margin: 0 1em 1em 0 !important;
+        max-width: 40% !important;
+        clear: left !important;
     }
 
     :global(.float-right) {
-        float: right;
-        margin: 0 0 1em 1em;
+        float: right !important;
+        margin: 0 0 1em 1em !important;
+        max-width: 40% !important; 
+        clear: right !important;
+    }
+
+    // Add a clearfix to ensure content flows properly around floats
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
     }
 }
 

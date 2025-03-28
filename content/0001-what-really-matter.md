@@ -23,9 +23,12 @@ Existem atualmente algumas técnicas para expandir o tamanho do contexto utiliza
 
 Gostaria de aqui mencionar algo um pouco óbvio porém que pode passar batido, o fato que LLMs não possuem raciocínio de fato. Ao menos não da forma como humanos o fazem. Estes modelos apesar de não serem determinísticos, ou seja, para a mesma entrada eles não geram sempre a mesma saída. Isso não quer dizer que estão tendo algum tipo de raciocínio real.
 
+![This will be the caption text asd asd asd asd asd asd{.float-left}](/blog/Dive.png)
+
 Dito isto, grandes bases de informações alimentadas nestes modelos, não garantem que haja uma compreensão de fato das nuances do código em si. Pois as tomadas de decisão da IA se basearão na entrada do contexto somada ao que o modelo foi treinado. Mesmo solicitando ao assistente que utilize uma abordagem específica não há nenhuma garantia de que a saída dada pelo assistente vai cumprir exatamente a solicitação.
 
 Nestes casos é muito comum a ocorrência de funções fantasma. Que são nada menos do que funções que nunca existiram no contexto. Mas poderiam existir nas bases utilizadas para treinar o modelo. Estes não são os casos mais graves pois IDEs e até mesmo compiladores irão apontar a falha. Porém em linguagens interpretadas, as vezes pode ocorrer desta verificação não ser feita e a falha pode ocorrer somente quando a linha onde a chamada da função está for chamada.
+
 
 ### Code duplication
 
@@ -56,10 +59,6 @@ Todos os problemas mencionados acima são os grandes obstáculos para as LLMs at
   
 
 ### Discover best practices for a language
-
-  
-
-<img src="/blog/Dive.png" alt="Dive" class="float-right">
 
 ## Conclusion:
 

@@ -5,7 +5,7 @@ import rehypeStringify from 'rehype-stringify'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-
+import { rehypeImageCaption } from './imageCaption';
 
 export interface PostData {
     slug: string;
@@ -34,6 +34,7 @@ export async function getPostData(slug: string): Promise<PostData> {
     const processedContent = await unified()
         .use(remarkParse)
         .use(remarkRehype, { allowDangerousHtml: true })
+        .use(rehypeImageCaption, { className: 'image-caption' }) 
         .use(rehypeStringify, { allowDangerousHtml: true })
         .process(contentRaw);
     const content = processedContent.toString();
