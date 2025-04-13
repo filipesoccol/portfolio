@@ -2,12 +2,12 @@
 @use 'utilities.scss';
 
 :root {
-  --dark1: colors.$dark1;
-  --dark2: colors.$dark2;
-  --dark3: colors.$dark3;
-  --light1: colors.$light1;
-  --light2: colors.$light2;
-  --light3: colors.$light3;
+  --dark1: #{colors.$dark1};
+  --dark2: #{colors.$dark2};
+  --dark3: #{colors.$dark3};
+  --light1: #{colors.$light1};
+  --light2: #{colors.$light2};
+  --light3: #{colors.$light3};
 }
 
 @media (prefers-color-scheme: light) {
@@ -26,6 +26,12 @@
 
 html {
   background: var(--background);
+  background-image: url('/background.svg');
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: 800px;
+  /* Adjust size as needed */
+  background-position: center;
   color: var(--text);
   overflow-y: scroll;
   max-width: 1400px;
@@ -35,12 +41,8 @@ html {
   print-color-adjust: economy;
 }
 
-.canvasHolder {
-  position: fixed;
-  z-index: -1;
-  left: 0px;
-  width: 100dvw;
-  height: 100dvh;
+.main-content {
+  min-height: calc(100vh - 100px);
 }
 
 body {
@@ -53,6 +55,11 @@ a {
   text-decoration: none;
   color: inherit;
   transition: color 0.2s ease-in-out;
+  color: var(--light3);
+
+  &:hover {
+    color: var(--text);
+  }
 }
 
 h1 {

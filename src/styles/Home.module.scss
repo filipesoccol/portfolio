@@ -68,7 +68,6 @@
 .holder2 {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
     width: 100%;
     overflow-x: clip;
     margin-bottom: 128px;
@@ -121,89 +120,39 @@
 
     .imageHolder {
         display: grid;
+        position: relative;
         width: 50%;
         overflow-x: clip;
         max-width: 100%;
 
         .holderEffect {
-            display: grid;
-            grid-area: 1 / 1 / 1 / 1;
+            position: absolute;
+            top: 0px;
+            left: 0%;
+            transition: all;
+            perspective: 150px;
+            -webkit-perspective: 150px;
             transform-style: preserve-3d;
-            transform-origin: 0% 0%;
-            transform: rotateY(90deg);
-            transition: none;
-
-            &.active {
-                transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
-                transform: rotateY(0deg);
-            }
-
-            .backgroundImage {
-                max-width: 100px;
-                perspective: 10;
-                grid-area: 1 / 1 / 1 / 1;
-                height: 100%;
-                background-color: colors.$dark3;
-                background-size: cover;
-                background-position: 0px 0px;
-                transition: none;
-                filter: saturate(0) brightness(0.3);
-
-                &.imageOne {
-                    background-image: url('/header/back1.png');
-                }
-
-                &.imageTwo {
-                    background-image: url('/header/back2.png');
-                }
-
-                &.imageThree {
-                    background-image: url('/header/back3.png');
-                }
-
-                &.active {
-                    background-position: -50% 0px;
-                    transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
-                }
-            }
+            -webkit-transform-style: preserve-3d;
 
             .foregroundImage {
                 pointer-events: none;
-                perspective: 50;
-                height: 100%;
-                animation: hero 1s 1 cubic-bezier(0.4, 1.6, 0.77, 0.8);
-                grid-area: 1 / 1 / 1 / 1;
-                align-self: end;
-                transform: translate3d(-50px, 0px, 0px);
-                transition: none;
+                transition: opacity 1s ease-out, transform 1s ease-out;
+                opacity: 0.0;
+                transform: translate3d(10px, 0px, -40px) rotateY(20deg);
+                -ms-transform: translate3d(10px, 0px, -40px) rotateY(20deg);
+                -webkit-transform: translate3d(10px, 0px, -40px) rotateY(20deg);
 
                 &.active {
-                    transform: translate3d(-50px, 0px, 50px);
-                    transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
+                    opacity: 1.0;
                 }
             }
         }
     }
 
     @media (max-width: 648px) {
-
         .bio {
             width: 70%;
-        }
-
-        .imageHolder {
-            width: 30%;
-
-            .holderEffect {
-
-                .foregroundImage {
-                    transform: translate3d(-50px, 0px, 0px);
-
-                    &.active {
-                        transform: translate3d(-100px, 0px, 50px);
-                    }
-                }
-            }
         }
     }
 }
@@ -429,5 +378,6 @@
         font-size: 0.7rem;
         margin-block-start: 0.2rem;
         margin-block-end: 0.2rem;
+        line-height: 32px;
     }
 }

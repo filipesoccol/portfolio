@@ -6,6 +6,7 @@ import styles from '@/styles/Blog.module.scss'
 import mainStyles from '@/styles/Home.module.scss'
 import Highlighter from '@/components/highlighter';
 import PostCard from '@/components/postCard';
+import Head from 'next/head';
 
 interface BlogProps {
     allPosts: PostData[];
@@ -14,6 +15,9 @@ interface BlogProps {
 export default function Blog({ allPosts }: BlogProps) {
     return (
         <div className={mainStyles.main}>
+            <Head>
+                <title>Filipe Montanari Soccol - Blog</title>
+            </Head>
             <Link href="/"> ⦦ Back </Link>
             <div className={styles.article}>
                 <h1>Blog</h1>

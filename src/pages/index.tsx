@@ -2,13 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.scss'
 
-import awards from '@/public/header/awards.png'
-import projects from '@/public/header/projects.png'
-import skills from '@/public/header/skills.png'
 import { useEffect, useState } from 'react'
 import Highlighter from '@/components/highlighter'
 import ExternalLinkIcon from '@/components/externalLinkIcon'
-import Link from 'next/link'
 import Icons from '@/components/icons'
 import { useRouter } from 'next/router'
 
@@ -16,27 +12,63 @@ export default function Home() {
 
   const router = useRouter()
   const [selectedSection, setSelectedSection] = useState<number>(1);
-  const [timer, setTimer] = useState<NodeJS.Timer | undefined>();
+  const [timer, setTimer] = useState<NodeJS.Timeout | undefined>();
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setSelectedSection((prev) => ((prev + 1) % 3) + 1)
+    const t = setInterval(() => {
+      setSelectedSection((prev) => ((prev + 1) % 4))
     }, 2000)
-    setTimer(timer)
+    setTimer(t)
     return () => {
       setTimer(undefined)
-      clearInterval(timer)
+      clearInterval(t)
     }
   }, [])
 
+  useEffect(() => {
+    if (selectedSection == 0) {
+      // @ts-ignore
+      const svg = new Walkway({
+        selector: '#svgImage1',
+        duration: 2000,
+      })
+      svg.draw();
+    }
+    if (selectedSection == 1) {
+      // @ts-ignore
+      const svg = new Walkway({
+        selector: '#svgImage2',
+        duration: 2000,
+      });
+      svg.draw();
+    }
+    if (selectedSection == 2) {
+      // @ts-ignore
+      const svg = new Walkway({
+        selector: '#svgImage3',
+        duration: 2000,
+      });
+      svg.draw();
+    }
+    if (selectedSection == 3) {
+      // @ts-ignore
+      const svg = new Walkway({
+        selector: '#svgImage4',
+        duration: 2000,
+      });
+      svg.draw();
+    }
+  }, [selectedSection])
+
   const setSelection = (index: number) => {
     setSelectedSection(index)
-    setTimer(timer)
+    clearInterval(timer)
+    setTimer(undefined)
   }
 
   const goToSelection = (index: number) => {
     const sections = ['skills', 'projects', 'awards']
-    const elem = document.getElementById(sections[index - 1])
+    const elem = document.getElementById(sections[index])
     console.log(elem?.scrollIntoView({ behavior: 'smooth' }))
   }
 
@@ -44,23 +76,6 @@ export default function Home() {
     <>
       <Head>
         <title>Filipe Montanari Soccol - Portfolio</title>
-        <meta name="description" content="Senior Developer with extensive experience in web and game development. Explore my projects, skills, and awards. Based in Londrina, Parana, Brazil." />
-        <meta name="keywords" content="Senior Developer, Web Development, Game Development, React, NextJS, Vue, Vite, Gatsby, Node, Express, MongoDB, PostgreSQL, MySQL, Unity, Pico-8, Phaser, Godot, Blockchain, Solidity, IPFS, Web3, Ethers, Viem, Asana, Jira, Git, Team Management, Project Planning, Brazil."></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Filipe Montanari Soccol - Senior Developer Portfolio" />
-        <meta property="og:description" content="Explore the portfolio of a Senior Developer with extensive experience in web and game development." />
-        <meta property="og:image" content="/apple-touch-icon.png" />
-        <meta property="og:url" content="https://filipe.contact" />
-        <meta name="twitter:card" content="apple-touch-icon.png" />
-        <meta name="twitter:creator" content="@filipesoccol" />
-        <meta name="twitter:title" content="Filipe Montanari Soccol - Senior Developer Portfolio" />
-        <meta name="twitter:description" content="Explore the portfolio of a Senior Developer with extensive experience in web and game development." />
-        <meta name="twitter:image" content="/apple-touch-icon.png"></meta>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://filipe.contact"></link>
       </Head>
       <main className={styles.main}>
@@ -82,46 +97,74 @@ export default function Home() {
           <div className={styles.bio}>
             <p>Senior Developer with extensive experience in web and game development, creative and excellent team player with a track record of success in high-impact projects and team leadership.</p>
             <button
+              className={`${styles.bioItem} ${selectedSection == 0 ? styles.active : ''}`}
+              onMouseEnter={() => setSelection(0)}
+              onClick={() => goToSelection(0)}
+            >
+              Skills
+            </button>
+            <button
               className={`${styles.bioItem} ${selectedSection == 1 ? styles.active : ''}`}
               onMouseEnter={() => setSelection(1)}
               onClick={() => goToSelection(1)}
             >
-              Skills
+              Projects
             </button>
             <button
               className={`${styles.bioItem} ${selectedSection == 2 ? styles.active : ''}`}
               onMouseEnter={() => setSelection(2)}
               onClick={() => goToSelection(2)}
             >
-              Projects
-            </button>
-            <button
-              className={`${styles.bioItem} ${selectedSection == 3 ? styles.active : ''}`}
-              onMouseEnter={() => setSelection(3)}
-              onClick={() => goToSelection(3)}
-            >
               Awards
             </button>
             <button
-              onMouseEnter={() => setSelection(4)}
-              className={`${styles.bioItem} ${selectedSection == 4 ? styles.active : ''}`}
+              onMouseEnter={() => setSelection(3)}
+              className={`${styles.bioItem} ${selectedSection == 3 ? styles.active : ''}`}
               onClick={() => router.push('/blog')}
             >
               Blog
             </button>
           </div>
           <div className={`${styles.imageHolder}`}>
+            <div className={`${styles.holderEffect} ${selectedSection == 0 ? styles.active : ''}`}>
+              <svg id="svgImage1" className={`${styles.foregroundImage} ${selectedSection == 0 ? styles.active : ''}`} width="300px" height="400px" viewBox="0 0 200 300" style={{ fillRule: 'evenodd', clipRule: 'evenodd', strokeLinejoin: 'bevel', strokeMiterlimit: 1.5 }}>
+                <g transform="scale(2, 1)">
+                  <path d="M100,16L17,16L17,177L42,177L42,227L0,227" style={{ fill: "none", stroke: "rgb(254,151,15)", strokeWidth: "33.33px" }} />
+                  <path d="M0,237L54,237L54.421,161L29,161L28.584,26L100,26" style={{ fill: "none", stroke: "rgb(244,91,46)", strokeWidth: "33.33px" }} />
+                  <path d="M0,257L65.708,257L66.129,142L41.708,142L41.292,46L100,46" style={{ fill: "none", stroke: "rgb(237,29,37)", strokeWidth: "33.33px" }} />
+                  <path d="M-0,283.029L83.5,283L83.5,136L57,136L57,66L100,66" style={{ fill: "none", stroke: "rgb(159,32,101)", strokeWidth: "33.33px" }} />
+                </g>
+              </svg>
+            </div>
             <div className={`${styles.holderEffect} ${selectedSection == 1 ? styles.active : ''}`}>
-              <div className={`${styles.backgroundImage} ${styles.imageThree}  ${selectedSection == 1 ? styles.active : ''}`}></div>
-              <Image className={`${styles.foregroundImage}  ${selectedSection == 1 ? styles.active : ''}`} src={skills} alt='Title' height={500}></Image>
+              <svg id="svgImage2" className={`${styles.foregroundImage} ${selectedSection == 1 ? styles.active : ''}`} width="300px" height="400px" viewBox="0 0 200 300" style={{ fillRule: "evenodd", clipRule: "evenodd", strokeLinejoin: 'bevel', strokeMiterlimit: 1.5 }}>
+                <g transform="scale(2, 1)">
+                  <path d="M17,167.014L83,167.014L83,19.014L17,19.014L17,299.014" style={{ fill: "none", stroke: "rgb(254,151,15)", strokeWidth: "33.33px" }} />
+                  <path d="M24,299.014L24,39.014L76,39.014L76,161.014L36,161.014" style={{ fill: "none", stroke: "rgb(244,91,46)", strokeWidth: "33.33px" }} />
+                  <path d="M25.791,299.014L25.375,56.014L76,57.014L76,163.014L37,163.014" style={{ fill: "none", stroke: "rgb(237,29,37)", strokeWidth: "33.33px" }} />
+                  <path d="M31,299.014L31,74.014L76,74.014L76,150.014L45,150.014" style={{ fill: "none", stroke: "rgb(159,32,101)", strokeWidth: "33.33px" }} />
+                </g>
+              </svg>
             </div>
             <div className={`${styles.holderEffect} ${selectedSection == 2 ? styles.active : ''}`}>
-              <div className={`${styles.backgroundImage} ${styles.imageTwo} ${selectedSection == 2 ? styles.active : ''}`}></div>
-              <Image className={`${styles.foregroundImage}  ${selectedSection == 2 ? styles.active : ''}`} src={projects} alt='Title' height={500}></Image>
+              <svg id="svgImage3" className={`${styles.foregroundImage} ${selectedSection == 2 ? styles.active : ''}`} width="300px" height="400px" viewBox="0 0 200 300" style={{ fillRule: "evenodd", clipRule: "evenodd", strokeLinejoin: 'bevel', strokeMiterlimit: 1.5 }}>
+                <g transform="scale(2, 1)">
+                  <path d="M84,300L84,16.029L17,16.029L17,300" style={{ fill: "none", stroke: "rgb(254,151,15)", strokeWidth: "33.33px" }} />
+                  <path d="M21.5,300L21.5,34L79.5,34L79.5,187L37,187L80,187.499L80,300" style={{ fill: "none", stroke: "rgb(244,91,46)", strokeWidth: "33.33px" }} />
+                  <path d="M22,300L22,58.5L79.625,59.5L80,170L22.325,170L80,170L80.812,300" style={{ fill: "none", stroke: "rgb(237,29,37)", strokeWidth: "33.33px" }} />
+                  <path d="M29,300L29,75L75,75L74.5,150L29,150L74.5,150L75,300" style={{ fill: "none", stroke: "rgb(159,32,101)", strokeWidth: "33.33px" }} />
+                </g>
+              </svg>
             </div>
             <div className={`${styles.holderEffect} ${selectedSection == 3 ? styles.active : ''}`}>
-              <div className={`${styles.backgroundImage} ${styles.imageOne}  ${selectedSection == 3 ? styles.active : ''}`}></div>
-              <Image className={`${styles.foregroundImage}  ${selectedSection == 3 ? styles.active : ''}`} src={awards} alt='Title' height={500}></Image>
+              <svg id="svgImage4" className={`${styles.foregroundImage} ${selectedSection == 3 ? styles.active : ''}`} width="300px" height="400px" viewBox="0 0 200 300" style={{ fillRule: "evenodd", clipRule: "evenodd", strokeLinejoin: 'bevel', strokeMiterlimit: 1.5 }}>
+                <g transform="scale(2, 1)">
+                  <path d="M35.515,85.178L83.5,85.168L83.5,283.971L16.5,283.971L16.5,0" style={{ fill: "none", stroke: "rgb(254,151,15)", strokeWidth: "33.33px" }} />
+                  <path d="M21,0L21,266L79,266L79,113L36.5,113" style={{ fill: "none", stroke: "rgb(244,91,46)", strokeWidth: "33.33px" }} />
+                  <path d="M21.5,0L21.5,241.5L79.125,240.5L79.5,130L21.825,130" style={{ fill: "none", stroke: "rgb(237,29,37)", strokeWidth: "33.33px" }} />
+                  <path d="M28.5,0L28.5,225L74.5,225L74,150L28.5,150" style={{ fill: "none", stroke: "rgb(159,32,101)", strokeWidth: "33.33px" }} />
+                </g>
+              </svg>
             </div>
           </div>
         </div>
@@ -264,16 +307,6 @@ export default function Home() {
               <li><a href="https://github.com/ETHBuenosAires-Doiim/bID" target='_blank'>bID Repo<ExternalLinkIcon /></a></li>
             </ul>
           </div>
-        </div>
-        <div className={styles.footer}>
-          <hr />
-          <div className={styles.social}>
-            <a href="https://github.com/filipesoccol" target='_blank'><Icons name="github" size={24} /></a>
-            <a href="https://www.linkedin.com/in/filipesoccol" target='_blank'><Icons name="linkedin" size={24} /></a>
-            <a href="https://twitter.com/filipesoccol" target='_blank'><Icons name="twitter" size={24} /></a>
-          </div>
-          <p>LONDRINA - PARANA - BRAZIL</p>
-          <p>filipe.soccol@gmail.com</p>
         </div>
       </main >
     </>
