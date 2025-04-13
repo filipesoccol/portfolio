@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <script src="/walkway.min.js"></script>
+        <script src="/walkway.min.js" defer />np
       </Head>
       <div className="main-content"><Component {...pageProps} /></div>
       <Footer />
