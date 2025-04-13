@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    volumes:
+      - .:/app  # Bind mount the current directory to /app in the container
+      - /app/node_modules
+    environment:
+      - NEXT_TELEMETRY_DISABLED=1
+    command: npm run dev

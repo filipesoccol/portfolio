@@ -1,4 +1,4 @@
-@import './colors.scss';
+@use 'colors.scss';
 
 .main {
     font-family: var(--futura-font);
@@ -30,17 +30,6 @@
         width: 50%;
         max-width: 50vw;
 
-        .socialIcons {
-            img {
-                cursor: pointer;
-                filter: saturate(0) brightness(2);
-            }
-
-            img:hover {
-                filter: saturate(1) brightness(1);
-            }
-        }
-
         @media (max-width: 648px) {
             display: none;
         }
@@ -54,13 +43,6 @@
         gap: 1rem;
         width: 30%;
         height: 9rem;
-
-        .socialIcons {
-            img {
-                // filter: hue-rotate(90deg);
-                width: 24px;
-            }
-        }
 
         @media (min-width: 649px) {
             display: none;
@@ -86,7 +68,6 @@
 .holder2 {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
     width: 100%;
     overflow-x: clip;
     margin-bottom: 128px;
@@ -103,7 +84,7 @@
 
         p {
             margin: 0px 0px 36px;
-            mix-blend-mode: difference;
+
         }
 
         .bioItem {
@@ -111,8 +92,8 @@
             display: block;
             background-color: transparent;
             cursor: pointer;
-            color: $light1;
             border: none;
+            color: var(--text);
             align-self: flex-end;
             margin: 0px 0px;
             font-size: 36px;
@@ -124,7 +105,7 @@
 
             &.active {
                 transform: translate(-20px, 0px);
-                color: $light3
+                color: colors.$light3
             }
 
             &.active::after {
@@ -132,96 +113,46 @@
                 right: -50px;
                 content: '⦦';
                 transform: translate(-20px, 0px);
-                color: $light3
+                color: colors.$light3
             }
         }
     }
 
     .imageHolder {
         display: grid;
+        position: relative;
         width: 50%;
         overflow-x: clip;
         max-width: 100%;
 
         .holderEffect {
-            display: grid;
-            grid-area: 1 / 1 / 1 / 1;
+            position: absolute;
+            top: 0px;
+            left: 0%;
+            transition: all;
+            perspective: 150px;
+            -webkit-perspective: 150px;
             transform-style: preserve-3d;
-            transform-origin: 0% 0%;
-            transform: rotateY(90deg);
-            transition: none;
-
-            &.active {
-                transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
-                transform: rotateY(0deg);
-            }
-
-            .backgroundImage {
-                max-width: 100px;
-                perspective: 10;
-                grid-area: 1 / 1 / 1 / 1;
-                height: 100%;
-                background-color: $dark3;
-                background-size: cover;
-                background-position: 0px 0px;
-                transition: none;
-                filter: saturate(0) brightness(0.3);
-
-                &.imageOne {
-                    background-image: url('/header/back1.png');
-                }
-
-                &.imageTwo {
-                    background-image: url('/header/back2.png');
-                }
-
-                &.imageThree {
-                    background-image: url('/header/back3.png');
-                }
-
-                &.active {
-                    background-position: -50% 0px;
-                    transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
-                }
-            }
+            -webkit-transform-style: preserve-3d;
 
             .foregroundImage {
                 pointer-events: none;
-                perspective: 50;
-                height: 100%;
-                animation: hero 1s 1 cubic-bezier(0.4, 1.6, 0.77, 0.8);
-                grid-area: 1 / 1 / 1 / 1;
-                align-self: end;
-                transform: translate3d(-50px, 0px, 0px);
-                transition: none;
+                transition: opacity 1s ease-out, transform 1s ease-out;
+                opacity: 0.0;
+                transform: translate3d(10px, 0px, -40px) rotateY(20deg);
+                -ms-transform: translate3d(10px, 0px, -40px) rotateY(20deg);
+                -webkit-transform: translate3d(10px, 0px, -40px) rotateY(20deg);
 
                 &.active {
-                    transform: translate3d(-50px, 0px, 50px);
-                    transition: all 1s cubic-bezier(0.4, 1.6, 0.77, 0.8);
+                    opacity: 1.0;
                 }
             }
         }
     }
 
     @media (max-width: 648px) {
-
         .bio {
             width: 70%;
-        }
-
-        .imageHolder {
-            width: 30%;
-
-            .holderEffect {
-
-                .foregroundImage {
-                    transform: translate3d(-50px, 0px, 0px);
-
-                    &.active {
-                        transform: translate3d(-100px, 0px, 50px);
-                    }
-                }
-            }
         }
     }
 }
@@ -229,18 +160,20 @@
 .sectionTitle {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     width: 100%;
-    background: linear-gradient(to right, $dark1, $dark1 40%, transparent);
-    margin-bottom: 0px;
-    margin-bottom: 36px;
+    background: linear-gradient(to right, var(--background), var(--background), transparent);
     position: sticky;
+    border-bottom: 2px solid var(--primary-color);
     top: 0;
     z-index: 1;
+    margin-bottom: 4rem;
+
+    h2 {
+        padding: 1rem 0rem;
+    }
 
     div:last-child {
         width: 100%;
-        align-self: self-end;
 
         hr {
             height: 1px;
@@ -252,7 +185,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 5vw;
-    margin-bottom: 10rem;
 
     li {
         font-family: var(--roboto-font);
@@ -275,7 +207,6 @@
         display: flex;
         flex-direction: column;
         gap: 24px;
-        margin: 32px 0px;
 
         @media (min-width: 760px) {
             flex-direction: row;
@@ -327,11 +258,11 @@
                 position: relative;
                 object-fit: cover;
                 mix-blend-mode: hard-light;
-                background: $light3;
+                background: colors.$light3;
                 transform: translate3d(10px, 0px, -40px) rotateY(10deg);
                 -ms-transform: translate3d(10px, 0px, -40px) rotateY(10deg);
                 -webkit-transform: translate3d(10px, 0px, -40px) rotateY(10deg);
-                border: $light3 2px solid;
+                border: colors.$light3 2px solid;
 
 
             }
@@ -343,7 +274,7 @@
                 left: calc(50% - 1rem);
                 width: 4rem;
                 height: 4rem;
-                background: $light3;
+                background: colors.$light3;
             }
 
         }
@@ -355,7 +286,7 @@
 
             p {
                 margin: 0px;
-                mix-blend-mode: difference;
+
             }
 
             a {
@@ -363,7 +294,7 @@
                 font-style: italic;
 
                 &:hover {
-                    color: $light3;
+                    color: colors.$light3;
                 }
             }
         }
@@ -394,7 +325,7 @@
 
         p {
             font-family: var(--roboto-font);
-            color: $light3;
+            color: colors.$light3;
             font-style: italic;
             font-size: 0.8rem;
             margin: 0px;
@@ -404,7 +335,7 @@
 
     .awardDescription {
 
-        mix-blend-mode: difference;
+
         font-family: var(--roboto-font);
 
         a {
@@ -412,7 +343,7 @@
             font-style: italic;
 
             &:hover {
-                color: $light3;
+                color: colors.$light3;
             }
         }
     }
@@ -423,7 +354,7 @@
     flex-direction: column;
     justify-content: center;
     font-family: var(--roboto-font);
-    mix-blend-mode: difference;
+
     text-align: center;
 
     .social {
@@ -447,5 +378,6 @@
         font-size: 0.7rem;
         margin-block-start: 0.2rem;
         margin-block-end: 0.2rem;
+        line-height: 32px;
     }
 }

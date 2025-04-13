@@ -1,12 +1,16 @@
-@import '../styles/colors.scss';
+@use '../styles/colors.scss';
 
 .mark {
     -webkit-animation: highlight 1s 1 normal forwards;
     animation: highlight 1s 1 normal forwards;
     background-color: none;
-    background: linear-gradient(90deg, $light3 50%, rgba(255, 255, 255, 0) 50%);
+    background: linear-gradient(90deg, colors.$light3 50%, rgba(255, 255, 255, 0) 50%);
     background-size: 200% 100%;
     background-position: 100% 0;
+    font-family: var(--futura-font);
+    padding: 0rem 0.5rem;
+
+    color: var(--text) !important;
 }
 
 @keyframes highlight {
