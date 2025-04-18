@@ -20,10 +20,10 @@ export default function Post({ postData }: PostProps) {
                 <meta property="og:title" content={postData.title} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={`https://filipe.contact/blog/${postData.slug}`} />
-                {postData.image && <meta property="og:image" content={postData.image} />}
+                {postData.image && <meta property="og:image" content={`https://filipe.contact/${postData.image}`} />}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content={postData.title} />
-                {postData.image && <meta name="twitter:image" content={postData.image} />}
+                {postData.image && <meta name="twitter:image" content={`https://filipe.contact/${postData.image}`} />}
                 <title>Filipe Montanari Soccol - Blog - {String(postData.title)}</title>
             </Head>
 

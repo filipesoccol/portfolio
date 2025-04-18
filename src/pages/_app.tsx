@@ -34,11 +34,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="twitter:description" content="Explore the portfolio of a Senior Developer with extensive experience in web and game development." />
         <meta name="twitter:image" content="/apple-touch-icon.png"></meta>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <script src="/walkway.min.js" defer />np
+        <link rel="icon" href="/favicon.ico" type="image/svg+xml" />
+        <script src="/walkway.min.js" defer />
       </Head>
       <div className="main-content"><Component {...pageProps} /></div>
       <Footer />
