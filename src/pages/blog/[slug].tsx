@@ -17,13 +17,13 @@ export default function Post({ postData }: PostProps) {
     return (
         <div className={mainStyles.main}>
             <Head>
-                <meta property="og:title" content={postData.title} />
-                <meta property="og:type" content="article" />
-                <meta property="og:url" content={`https://filipe.contact/blog/${postData.slug}`} />
-                {postData.image && <meta property="og:image" content={`https://filipe.contact/${postData.image}`} />}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={postData.title} />
-                {postData.image && <meta name="twitter:image" content={`https://filipe.contact/${postData.image}`} />}
+                <meta key="og:title" property="og:title" content={postData.title} />
+                <meta key="og:type" property="og:type" content="article" />
+                <meta key="og:url" property="og:url" content={`https://filipe.contact/blog/${postData.slug}`} />
+                {postData.image && <meta key="og:image" property="og:image" content={`https://filipe.contact/${postData.image}`} />}
+                <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+                <meta key="twitter:title" name="twitter:title" content={postData.title} />
+                {postData.image && <meta key="twitter:image" name="twitter:image" content={`https://filipe.contact/${postData.image}`} />}
                 <title>Filipe Montanari Soccol - Blog - {String(postData.title)}</title>
             </Head>
 

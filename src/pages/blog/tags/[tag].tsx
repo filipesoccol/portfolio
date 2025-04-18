@@ -14,6 +14,16 @@ interface TagPageProps {
 export default function TagPage({ posts, tag }: TagPageProps) {
     return (
         <div className={mainStyles.main}>
+            <head>
+                <title>Posts tagged with #{tag} | Filipe Soccol's Blog</title>
+                <meta name="description" content={`Filipe Montanari Soccol - Blog posts tagged with ${tag}`} />
+                <meta property="og:title" content={`Filipe Montanari Soccol - Posts tagged with #${tag}`} />
+                <meta property="og:description" content={`Explore blog posts tagged with ${tag}`} />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content={`Filipe Montanari Soccol - Posts tagged with #${tag}`} />
+                <meta name="twitter:description" content={`Explore blog posts tagged with ${tag}`} />
+            </head>
             <Link href="/blog"> ⦦ Back to Blog </Link>
             <div className={styles.article}>
                 <h2>Posts tagged with #{tag}</h2>
