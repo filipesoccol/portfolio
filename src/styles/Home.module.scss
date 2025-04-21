@@ -147,6 +147,14 @@
                     opacity: 1.0;
                 }
             }
+
+            @media screen and (max-width: 648px) {
+                .foregroundImage {
+                    transform: translate3d(-60px, 0px, -40px) rotateY(80deg) scale(0.65);
+                    -ms-transform: translate3d(-60px, 0px, -40px) rotateY(80deg) scale(0.65);
+                    -webkit-transform: translate3d(-60px, 0px, -40px) rotateY(80deg) scale(0.65);
+                }
+            }
         }
     }
 
