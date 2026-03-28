@@ -254,6 +254,16 @@ export default function Home() {
             </div>
             <div className={styles.spacer}></div>
           </div>
+          <div className={`${styles.project} ${styles.inverse}`}>
+            <div className={`${styles.projectImage} ${styles.spacer} ${styles.inverse}`}><Image src='/projects/shh_48.png' alt='Shh preview' width={300} height={300} /></div>
+            <div className={styles.projectDescription}>
+              <p><a href="https://filipesoccol.github.io/shh/" target='_blank'>Shh<ExternalLinkIcon /></a></p>
+              <p>Shh is a sharing secrets app that doesn't use any external library, server or database. It allows users to securely share secrets directly from their browser. Uses only Vanilla JS and pure CSS. Generates private keys for encryption and decryption of messages that are never accessed by anyone neither the holder.</p>
+              <p>Tech Stack:</p>
+              <p>Vanilla JS・CSS</p>
+            </div>
+            <div className={styles.spacer}></div>
+          </div>
         </div>
         <div id="awards" className={styles.sectionTitle}>
           <div><h2>Awards</h2></div>
